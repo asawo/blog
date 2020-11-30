@@ -1,4 +1,5 @@
 /node_modules/
 /__sapper__/*
+/posts/*
 
 .DS_Store

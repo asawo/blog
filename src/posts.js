@@ -7,12 +7,22 @@ export const posts = _.chain(all) // begin a chain
                       .value() // convert chain back to array
 
 function transform({filename, html, metadata}) {
-  const permalink = filename.replace(/\.md$/, '')
-  const date = new Date(metadata.date).toDateString()
+  const permalink = filename.replace(/\.md$/, '');
+  const date = new Date(metadata.date);
+  let tags = [];
 
-  return {...metadata, filename, html, permalink, date}
+  if (metadata.tags) {
+    tags = metadata.tags.split(',').map(str => str.trim())
+  }
+
+
+  return {...metadata, filename, html, permalink, date, tags}
 }
 
 export function findPost(permalink) {
   return _.find(posts, {permalink})
+}
+
+export function findByTag(tag) {
+  return posts.filter(post => post.tags.includes(tag))
 }

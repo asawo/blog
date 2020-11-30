@@ -1,7 +1,7 @@
 <style>
 	#about-me {
 		padding-top: 20px;
-		padding-bottom: 20px;
+		padding-bottom: 10px;
 	}
 </style>
 

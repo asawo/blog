@@ -1,6 +1,7 @@
 <script context="module">
 	import { findPost } from '../../posts';
 	import Footer from '../../components/Footer.svelte';
+	import Tags from '../../components/Tags.svelte';
 
 	export function preload(page) {
 		const post = findPost(page.params.permalink);
@@ -20,10 +21,9 @@
 	#mkdwn :global(img) {
 		max-width: 90%;
 		margin: 0 auto;
-		padding: 2em;
+		margin-top: 2em;
 		padding-bottom: 0;
 		border-radius: 5px;
-		border-image: auto;
 	}
 
 	#mkdwn :global(code) {
@@ -41,6 +41,7 @@
 
 <a href={`/`}><h3>⬅ Home</h3></a>
 <h1>{post.title}</h1>
+<Tags tags={post.tags} />
 <div id="mkdwn">
 	{@html post.html}
 </div>

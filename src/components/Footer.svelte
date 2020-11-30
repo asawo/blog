@@ -1,6 +1,6 @@
 <style>
 	footer {
-		padding-top: 20px;
+		padding-bottom: 20px;
 		line-height: 30px;
 		text-align: center;
 	}
