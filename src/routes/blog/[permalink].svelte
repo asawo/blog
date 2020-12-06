@@ -34,7 +34,7 @@
 		padding: 0.2em 0.4em;
 		border-radius: 2px;
 	}
-	#mkdwn :global(em) {
+	#mkdwn :global(em, ul, li) {
 		color: #b47239;
 	}
 </style>
@@ -45,5 +45,5 @@
 <div id="mkdwn">
 	{@html post.html}
 </div>
-<a href={`/`}><h3>⬅ Back</h3></a>
+<a href={`/`}><h3>⬅ Home</h3></a>
 <Footer />

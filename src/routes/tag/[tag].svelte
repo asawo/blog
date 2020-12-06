@@ -1,6 +1,7 @@
 <script context="module">
 	import { findByTag } from '../../posts';
 	import PostList from '../../components/PostList.svelte';
+	import Footer from '../../components/Footer.svelte';
 
 	export function preload(page) {
 		const { tag } = page.params;
@@ -14,5 +15,19 @@
 	export let tag, posts;
 </script>
 
+<style>
+	#box {
+		margin-top: 30px;
+		padding: 20px;
+		border-style: solid;
+		border-radius: 5px;
+		border-color: rgb(114, 156, 156);
+		border-width: thin;
+	}
+</style>
+
 <h1>#{tag}</h1>
-<PostList {posts} />
+<div id="box">
+	<PostList {posts} />
+</div>
+<Footer />
