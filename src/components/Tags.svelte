@@ -12,8 +12,16 @@
 		margin-right: 5px;
 		text-decoration: none;
 	}
+	section {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	section > a {
+		margin-top: 5px;
+	}
 </style>
 
-<nav>
+<section>
 	{#each tags as tag}<a href="/tag/{tag}">#{tag}</a>{/each}
-</nav>
+</section>

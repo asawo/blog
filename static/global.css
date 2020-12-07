@@ -15,16 +15,7 @@ h6 {
 	line-height: 1.2;
 }
 
-code {
-	font-family: menlo, inconsolata, monospace;
-	font-size: calc(1em - 2px);
-	color: #cb3866;
-	background-color: #cf90a4;
-	padding: 0.2em 0.4em;
-	border-radius: 2px;
-}
-
-@media (min-width: 400px) {
+@media (min-width: 500px) {
 	body {
 		font-size: 16px;
 	}

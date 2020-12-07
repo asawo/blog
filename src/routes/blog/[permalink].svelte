@@ -18,6 +18,7 @@
 	h1 {
 		padding-top: 1em;
 	}
+
 	#mkdwn :global(img) {
 		max-width: 90%;
 		margin: 0 auto;
@@ -39,7 +40,7 @@
 	}
 </style>
 
-<a href={`/`}><h3>⬅ Home</h3></a>
+<a href={`/`} id="home-top"><h3>⬅ Home</h3></a>
 <h1>{post.title}</h1>
 <Tags tags={post.tags} />
 <div id="mkdwn">

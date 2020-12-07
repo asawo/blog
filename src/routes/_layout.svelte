@@ -2,16 +2,15 @@
 	main {
 		position: relative;
 		max-width: 56em;
-		padding: 2em;
+		padding: 4em;
 		margin: 0 auto;
 		box-sizing: border-box;
-		font-family: 'Roboto Mono', monospace;
-		padding: 4em;
 	}
 
 	:global(html) {
 		background-color: rgb(35, 43, 43);
-		font-size: 16px;
+		font-size: 12px;
+		font-family: 'Roboto Mono', monospace;
 	}
 
 	:global(h1) {
