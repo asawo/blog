@@ -8,9 +8,9 @@
 		font-size: 1em;
 	}
 	@media (min-width: 500px) {
-		.burger {
+		/* .burger {
 			display: none;
-		}
+		} */
 
 		.nav-items {
 			/* display: flex; */
