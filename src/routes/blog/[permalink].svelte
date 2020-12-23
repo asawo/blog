@@ -20,7 +20,7 @@
 	}
 
 	#mkdwn :global(img) {
-		max-width: 90%;
+		max-width: 100%;
 		margin: 0 auto;
 		margin-top: 2em;
 		padding-bottom: 0;
