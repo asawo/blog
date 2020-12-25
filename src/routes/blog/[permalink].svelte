@@ -35,8 +35,13 @@
 		padding: 0.2em 0.4em;
 		border-radius: 2px;
 	}
+	
 	#mkdwn :global(em, ul, li) {
 		color: #b47239;
+	}
+
+	#mkdwn :global(hr){
+		border-color: rgb(114, 156, 156)
 	}
 </style>
 
