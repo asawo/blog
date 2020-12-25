@@ -14,6 +14,6 @@
 		<a href={`/blog/${post.permalink}`}>
 			<h3>✎ {post.title}</h3>
 		</a>
-		<p>{post.summary} - {post.date.toDateString()}</p>
+		<p>{post.summary} - {post.date.toLocaleDateString()}</p>
 	</article>
 {/each}
