@@ -39,6 +39,11 @@
 	a {
 		text-decoration: none;
 	}
+
+	hr {
+		border-color: rgb(114, 156, 156);
+		margin-bottom: 20px;
+	}
 </style>
 
 <nav>
@@ -50,3 +55,4 @@
 		</div>
 	</ul>
 </nav>
+<hr>

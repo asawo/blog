@@ -1,3 +1,8 @@
+<script>
+	import Navbar from '../components/Nav.svelte';
+	import Footer from '../components/Footer.svelte';
+</script>
+
 <style>
 	main {
 		position: relative;
@@ -40,5 +45,7 @@
 </style>
 
 <main>
+	<Navbar />
 	<slot />
+	<Footer />
 </main>

@@ -1,7 +1,6 @@
 <script context="module">
 	import { findByTag } from '../../posts';
 	import PostList from '../../components/PostList.svelte';
-	import Footer from '../../components/Footer.svelte';
 
 	export function preload(page) {
 		const { tag } = page.params;
@@ -26,8 +25,8 @@
 	}
 </style>
 
+<br/>
 <h1>#{tag}</h1>
 <div id="box">
 	<PostList {posts} />
 </div>
-<Footer />

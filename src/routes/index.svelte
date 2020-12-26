@@ -5,8 +5,5 @@
 	import NavbarLayout from '../components/NavbarLayout.svelte';
 </script>
 
-<NavbarLayout>
-	<AboutMe />
-	<RecentPosts />
-	<Footer />
-</NavbarLayout>
+<AboutMe />
+<RecentPosts />

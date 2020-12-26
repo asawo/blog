@@ -11,6 +11,7 @@ import path from 'path'
 import pkg from './package.json'
 import markdown from '@jackfranklin/rollup-plugin-markdown'
 import glob from 'rollup-plugin-glob'
+import { config as envConfig } from 'dotenv';
 
 const mode = process.env.NODE_ENV
 const dev = mode === 'development'
@@ -31,7 +32,12 @@ export default {
       alias({ entries: aliases }),
       replace({
         'process.browser': true,
-        'process.env.NODE_ENV': JSON.stringify(mode)
+        'process.env.NODE_ENV': JSON.stringify(mode),
+        __myapp: JSON.stringify({
+          env: {
+            ...envConfig().parsed
+          }
+        }),
       }),
       svelte({
         dev,
