@@ -28,7 +28,7 @@
 			class="fa fa-spotify"
 			aria-hidden="true" /></a>
 	<p style="font-size: smaller;">
-		2020 Arthur Lechte<br />
+		2020-2021 Arthur Lechte<br />
 		Hosted on a raspberry pi with
 		<i class="fa fa-heart" />
 	</p>

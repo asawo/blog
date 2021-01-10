@@ -9,6 +9,6 @@
 	<h2>About me</h2>
 	<p>
 		Software engineer based in Tokyo, Japan. Currently working as a backend
-		engineer for a c2c marketplace service in Japan.
+		engineer for a marketplace service and tech unicorn in Japan.
 	</p>
 </div>

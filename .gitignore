@@ -4,3 +4,7 @@
 /src/node_modules/
 .DS_Store
 .env
+Dockerfile
+blog-pod.yml
+service.yml
+.dockerignore
