@@ -70,13 +70,13 @@ export default function Home() {
       
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam dignissim convallis est. Quisque aliquam. Donec faucibus. Nunc iaculis suscipit dui.</p>
       
-          <p><label for="text_field">Text Field:</label><br />
+          <p><label htmlFor="text_field">Text Field:</label><br />
           <input type="text" id="text_field" /></p>
       
-          <p><label for="text_area">Text Area:</label><br />
+          <p><label htmlFor="text_area">Text Area:</label><br />
           <textarea id="text_area"></textarea></p>
       
-          <p><label for="select_element">Select Element:</label><br />
+          <p><label htmlFor="select_element">Select Element:</label><br />
             <select name="select_element">
             <optgroup label="Option Group 1">
               <option value="1">Option 1</option>
@@ -90,28 +90,27 @@ export default function Home() {
             </optgroup>
           </select></p>
       
-          <p><label for="radio_buttons">Radio Buttons:</label><br />
-            <input type="radio" class="radio" name="radio_button" value="radio_1" /> Radio 1<br/>
-              <input type="radio" class="radio" name="radio_button" value="radio_2" /> Radio 2<br/>
-              <input type="radio" class="radio" name="radio_button" value="radio_3" /> Radio 3<br/>
+          <p><label htmlFor="radio_buttons">Radio Buttons:</label><br />
+            <input type="radio" className="radio" name="radio_button" value="radio_1" /> Radio 1<br/>
+              <input type="radio" className="radio" name="radio_button" value="radio_2" /> Radio 2<br/>
+              <input type="radio" className="radio" name="radio_button" value="radio_3" /> Radio 3<br/>
           </p>
       
-          <p><label for="checkboxes">Checkboxes:</label><br />
-            <input type="checkbox" class="checkbox" name="checkboxes" value="check_1" /> Radio 1<br/>
-              <input type="checkbox" class="checkbox" name="checkboxes" value="check_2" /> Radio 2<br/>
-              <input type="checkbox" class="checkbox" name="checkboxes" value="check_3" /> Radio 3<br/>
+          <p><label htmlFor="checkboxes">Checkboxes:</label><br />
+            <input type="checkbox" className="checkbox" name="checkboxes" value="check_1" /> Radio 1<br/>
+              <input type="checkbox" className="checkbox" name="checkboxes" value="check_2" /> Radio 2<br/>
+              <input type="checkbox" className="checkbox" name="checkboxes" value="check_3" /> Radio 3<br/>
           </p>
       
-          <p><label for="password">Password:</label><br />
-            <input type="password" class="password" name="password" />
+          <p><label htmlFor="password">Password:</label><br />
+            <input type="password" className="password" name="password" />
           </p>
       
-          <p><label for="file">File Input:</label><br />
-            <input type="file" class="file" name="file" />
+          <p><label htmlFor="file">File Input:</label><br />
+            <input type="file" className="file" name="file" />
           </p>
       
-      
-          <p><input class="button" type="reset" value="Clear" /> <input class="button" type="submit" value="Submit" />
+          <p><input className="button" type="reset" value="Clear" /> <input className="button" type="submit" value="Submit" />
           </p>
       
       
@@ -125,14 +124,14 @@ export default function Home() {
       
       <h1 id="tables">Tables</h1>
       
-      <table cellspacing="0" cellpadding="0">
+      <table cellSpacing="0" cellPadding="0">
         <tr>
           <th>Table Header 1</th><th>Table Header 2</th><th>Table Header 3</th>
         </tr>
         <tr>
           <td>Division 1</td><td>Division 2</td><td>Division 3</td>
         </tr>
-        <tr class="even">
+        <tr className="even">
           <td>Division 1</td><td>Division 2</td><td>Division 3</td>
         </tr>
         <tr>

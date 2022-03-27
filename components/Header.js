@@ -2,10 +2,10 @@ import Link from 'next/link'
 
 export default function Header() {
     return (
-        <header>
-            <div className='container'>
+        <header className="container">
+            <div>
                 <Link href='/'>
-                    <h2>Blog</h2>
+                    <h2>asawo.dev</h2>
                 </Link>
             </div> 
         </header>
