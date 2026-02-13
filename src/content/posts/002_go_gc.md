@@ -6,7 +6,7 @@ description: A look into Go's garbage collector
 
 ![Placeholder image](../../assets/go_garbage_collector.png)
 
-> *“I never think about memory… until production does.”*.
+> *“I never think about memory… until production does.”*
 
 ## Why should we care?
 To be honest, I haven't needed knowledge of the specifics of Go's garbage collector (GC) to significantly optimise performance in day-to-day work. 
