@@ -22,7 +22,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <nav>
-      <a href={`${import.meta.env.BASE_URL}`}>Blog</a>
+      <a href={`${import.meta.env.BASE_URL}`}><span class="prompt">&gt;</span> blog</a>
       <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
     </nav>
     <script is:inline>
@@ -54,7 +54,7 @@ const { title } = Astro.props;
       <slot />
     </main>
     <footer>
-      &copy; {new Date().getFullYear()}
+      <span class="prompt">&gt;</span> &copy; {new Date().getFullYear()} asawo
     </footer>
   </body>
 </html>
