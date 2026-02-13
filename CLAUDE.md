@@ -33,6 +33,19 @@ description: Optional description.
 Content here.
 ```
 
+## Commit conventions
+
+Use [Conventional Commits](https://www.conventionalcommits.org/). Format:
+
+```
+<type>: <short summary>
+```
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `chore`, `test`
+
+- Subject line: imperative mood, lowercase, no period, max 72 chars
+- Body (optional): separate with blank line, explain *why* not *what*
+
 ## Deployment
 
 Push to `main` triggers `.github/workflows/deploy.yml` which builds and deploys to GitHub Pages via `withastro/action@v3`.

@@ -1,3 +1,23 @@
+/* 1. Design tokens */
+
+:root {
+  color-scheme: light dark;
+
+  --color-text: light-dark(oklch(0.15 0.01 260), oklch(0.9 0.005 90));
+  --color-text-muted: light-dark(oklch(0.45 0.01 260), oklch(0.55 0.01 90));
+  --color-accent: light-dark(oklch(0.5 0.19 30), oklch(0.68 0.2 30));
+  --color-link: var(--color-accent);
+  --color-surface: light-dark(oklch(0.985 0 0), oklch(0.13 0.01 260));
+  --color-border: light-dark(oklch(0.85 0.005 260), oklch(0.28 0.01 260));
+  --color-code-bg: light-dark(oklch(0.95 0.005 260), oklch(0.18 0.01 260));
+
+  --font-body: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --content-width: 65ch;
+}
+
+/* 2. Reset */
+
 *,
 *::before,
 *::after {
@@ -5,61 +25,55 @@
   margin: 0;
 }
 
+/* 3. Base elements */
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.7;
-  color: #1a1a1a;
-  max-width: 65ch;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  max-width: var(--content-width);
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
 a {
-  color: #2563eb;
+  color: var(--color-link);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 a:hover {
-  text-decoration: underline;
-}
-
-nav {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-nav a {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1a1a1a;
-}
-
-footer {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e5e5e5;
-  font-size: 0.875rem;
-  color: #666;
+  color: var(--color-text);
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1.3;
   margin-bottom: 0.5rem;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.15rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+h2::before {
+  content: '## ';
+  color: var(--color-accent);
+}
+
+h3 {
+  font-size: 1rem;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-h3 {
-  font-size: 1.15rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
+h3::before {
+  content: '### ';
+  color: var(--color-accent);
 }
 
 p {
@@ -73,48 +87,75 @@ ol {
 }
 
 pre {
-  background: #f5f5f5;
+  background: var(--color-code-bg);
   padding: 1rem;
-  border-radius: 4px;
+  border-radius: 0;
+  border-left: 2px solid var(--color-accent);
   overflow-x: auto;
   margin-bottom: 1rem;
 }
 
 code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
 }
 
-:not(pre) > code {
-  background: #f5f5f5;
+:not(pre)>code {
+  background: var(--color-code-bg);
   padding: 0.15em 0.35em;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 blockquote {
-  border-left: 3px solid #e5e5e5;
+  border-left: 2px solid var(--color-border);
   padding-left: 1rem;
-  color: #555;
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
 }
 
-.post-list {
-  list-style: none;
-  padding: 0;
+/* 4. Layout */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-border);
 }
 
-.post-list li {
-  margin-bottom: 1.25rem;
+nav a {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
 }
 
-.post-list time {
-  display: block;
-  font-size: 0.85rem;
-  color: #666;
+.prompt {
+  color: var(--color-accent);
+  font-weight: 400;
 }
 
-.post-meta {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 1.5rem;
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-body);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--color-border);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
 }
