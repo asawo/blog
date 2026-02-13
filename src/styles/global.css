@@ -1,120 +1,141 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
+ /* 1. Design tokens */
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.7;
-  color: #1a1a1a;
-  max-width: 65ch;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
 
-a {
-  color: #2563eb;
-  text-decoration: none;
-}
+ :root {
+   color-scheme: light dark;
 
-a:hover {
-  text-decoration: underline;
-}
+   --color-text: light-dark(oklch(0.15 0.01 260), oklch(0.93 0.01 260));
+   --color-text-muted: light-dark(oklch(0.45 0.01 260), oklch(0.65 0.01 260));
+   --color-link: light-dark(oklch(0.49 0.16 260), oklch(0.72 0.14 260));
+   --color-surface: light-dark(oklch(0.99 0 0), oklch(0.16 0.015 260));
+   --color-border: light-dark(oklch(0.9 0.005 260), oklch(0.32 0.01 260));
+   --color-code-bg: light-dark(oklch(0.96 0.005 260), oklch(0.25 0.01 260));
 
-nav {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e5e5;
-}
+   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+   --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+   --content-width: 65ch;
+ }
 
-nav a {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1a1a1a;
-}
+ /* 2. Reset */
 
-footer {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e5e5e5;
-  font-size: 0.875rem;
-  color: #666;
-}
+ *,
+ *::before,
+ *::after {
+   box-sizing: border-box;
+   margin: 0;
+ }
 
-h1 {
-  font-size: 1.75rem;
-  line-height: 1.3;
-  margin-bottom: 0.5rem;
-}
+ /* 3. Base elements */
 
-h2 {
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
+ body {
+   font-family: var(--font-body);
+   line-height: 1.7;
+   color: var(--color-text);
+   background-color: var(--color-surface);
+   max-width: var(--content-width);
+   margin: 0 auto;
+   padding: 2rem 1rem;
+ }
 
-h3 {
-  font-size: 1.15rem;
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-}
+ a {
+   color: var(--color-link);
+   text-decoration: none;
+ }
 
-p {
-  margin-bottom: 1rem;
-}
+ a:hover {
+   text-decoration: underline;
+ }
 
-ul,
-ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
-}
+ h1 {
+   font-size: 1.75rem;
+   line-height: 1.3;
+   margin-bottom: 0.5rem;
+ }
 
-pre {
-  background: #f5f5f5;
-  padding: 1rem;
-  border-radius: 4px;
-  overflow-x: auto;
-  margin-bottom: 1rem;
-}
+ h2 {
+   font-size: 1.4rem;
+   margin-top: 1.5rem;
+   margin-bottom: 0.5rem;
+ }
 
-code {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  font-size: 0.9em;
-}
+ h3 {
+   font-size: 1.15rem;
+   margin-top: 1.25rem;
+   margin-bottom: 0.5rem;
+ }
 
-:not(pre) > code {
-  background: #f5f5f5;
-  padding: 0.15em 0.35em;
-  border-radius: 3px;
-}
+ p {
+   margin-bottom: 1rem;
+ }
 
-blockquote {
-  border-left: 3px solid #e5e5e5;
-  padding-left: 1rem;
-  color: #555;
-  margin-bottom: 1rem;
-}
+ ul,
+ ol {
+   padding-left: 1.5rem;
+   margin-bottom: 1rem;
+ }
 
-.post-list {
-  list-style: none;
-  padding: 0;
-}
+ pre {
+   background: var(--color-code-bg);
+   padding: 1rem;
+   border-radius: 4px;
+   overflow-x: auto;
+   margin-bottom: 1rem;
+ }
 
-.post-list li {
-  margin-bottom: 1.25rem;
-}
+ code {
+   font-family: var(--font-mono);
+   font-size: 0.9em;
+ }
 
-.post-list time {
-  display: block;
-  font-size: 0.85rem;
-  color: #666;
-}
+ :not(pre)>code {
+   background: var(--color-code-bg);
+   padding: 0.15em 0.35em;
+   border-radius: 3px;
+ }
 
-.post-meta {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 1.5rem;
-}
+ blockquote {
+   border-left: 3px solid var(--color-border);
+   padding-left: 1rem;
+   color: var(--color-text-muted);
+   margin-bottom: 1rem;
+ }
+
+
+ /* 4. Layout */
+
+ nav {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 2rem;
+   padding-bottom: 1rem;
+   border-bottom: 1px solid var(--color-border);
+ }
+
+ nav a {
+   font-size: 1.25rem;
+   font-weight: 700;
+   color: var(--color-text);
+ }
+
+ .theme-toggle {
+   background: none;
+   border: none;
+   cursor: pointer;
+   font-size: 1.25rem;
+   color: var(--color-text-muted);
+   padding: 0.25rem;
+ }
+
+ .theme-toggle:hover {
+   color: var(--color-text);
+ }
+
+ footer {
+   margin-top: 3rem;
+   padding-top: 1rem;
+   border-top: 1px solid var(--color-border);
+   font-size: 0.875rem;
+   color: var(--color-text-muted);
+ }
