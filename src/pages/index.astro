@@ -7,7 +7,7 @@ const posts = (await getCollection('posts')).sort(
 );
 ---
 
-<Base title="Blog">
+<Base title="blog">
   <ul class="post-list">
     {posts.map((post) => (
       <li>
