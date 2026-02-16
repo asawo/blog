@@ -37,17 +37,26 @@ const { title } = Astro.props;
 
         function apply(theme) {
           document.documentElement.style.colorScheme = theme;
-          btn.textContent = theme === 'dark' ? '\u2600' : '\u263D';
+          btn.innerHTML = '<span>' + (theme === 'dark' ? '\u2600' : '\u263D') + '</span>';
           btn.setAttribute('aria-label',
             theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
         }
 
         apply(effective());
 
+        // When navigating back, check the theme persists
+        window.addEventListener('pageshow', function (e) {
+          if (e.persisted) apply(effective());
+        });
+
         btn.addEventListener('click', function () {
-          var next = effective() === 'dark' ? 'light' : 'dark';
+          const next = effective() === 'dark' ? 'light' : 'dark';
+          document.documentElement.classList.add('theme-transitioning');
           localStorage.setItem('theme', next);
           apply(next);
+          setTimeout(function () {
+            document.documentElement.classList.remove('theme-transitioning');
+          }, 300);
         });
       })();
     </script>
