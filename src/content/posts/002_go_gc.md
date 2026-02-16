@@ -4,7 +4,7 @@ date: 2026-02-14
 description: A look into Go's garbage collector
 ---
 
-![Placeholder image](../../assets/go_garbage_collector.png)
+![gopher image](../../assets/go_garbage_collector.png)
 
 > *“I never think about memory… until production does.”*
 
