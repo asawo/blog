@@ -147,11 +147,27 @@ nav {
   border-bottom: 2px solid var(--color-border);
 }
 
-nav a {
+.nav-path {
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
   letter-spacing: 0.02em;
+}
+
+.nav-path a {
+  color: var(--color-accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-text), var(--color-text));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease;
+}
+
+@media (hover: hover) {
+  .nav-path a:hover {
+    background-size: 100% 1px;
+  }
 }
 
 .prompt {

@@ -8,6 +8,10 @@ const posts = (await getCollection('posts')).sort(
 ---
 
 <Base title="blog">
+  <section class="intro">
+    <h1><span class="prompt">&gt;</span> posts</h1>
+    <p class="description">learning notes, saved to disc</p> 
+  </section>
   <ul class="post-list">
     {posts.map((post) => (
       <li>
@@ -21,6 +25,15 @@ const posts = (await getCollection('posts')).sort(
 </Base>
 
 <style>
+
+  .intro {
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    color: var(--color-text-muted);
+  }
+
   .post-list {
     list-style: none;
     padding: 0;
