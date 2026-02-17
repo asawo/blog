@@ -81,7 +81,7 @@ One thing that matters more than total memory size is allocation rate. Reducing 
 
 Examples:
 
-### Preallocate capacity to reduce allocations:
+### Preallocate capacity to reduce allocations
 ```go
 func process(items []string) []string {
     // ❌ allocates new slice each time
@@ -106,7 +106,7 @@ func process(items []string) []string {
 }
 ```
 
-### Avoid unnecessary heap allocation.
+### Avoid unnecessary heap allocation
 We can avoid allocating to the heap by not using pointers if they are not needed.
 
 Returning pointers often causes heap allocation because the value escapes the function, (although this depends on escape analysis):
