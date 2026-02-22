@@ -50,11 +50,9 @@ In a codebase that also dealt with orbital scheduling and radar signal processin
 
 ## GeoJSON as a System Boundary
 
-GeoJSON isn’t complicated. The spec ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)) is clear, and mature libraries handle validation reliably.
+GeoJSON isn’t as complicated as it may seem. The spec ([RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)) is clear, and as far as validation goes, mature libraries can handle it reliably.
 
-What made it interesting was where it sat in the system.
-
-GeoJSON became a boundary object shared across very different domains:
+The unique part about GeoJSON was its role in the system. GeoJSON became a boundary object shared across very different domains:
 - Frontend UI code rendering interactive maps
 - Backend APIs handling user requests
 - Spatial databases storing and querying areas of interest
@@ -65,13 +63,13 @@ Each part of the system had different concerns. The frontend cared about user in
 
 Despite those differences, every component was perfectly happy consuming the same small JSON object with coordinates.
 
-We relied on a standard rather than designing a custom format. It wasn’t exciting, but it meant less friction between services, straightforward logging, and predictable APIs.
+We relied on a standard rather than designing a custom format. It meant less friction between services, straightforward logging, and predictable APIs. Boring perhaps, but sometimes boring is good.
 
 ## Spatial Data Is Not CRUD Data
 
-Working with GeoJSON also changed how I thought about data.
+Working with GeoJSON was interesting because the data went beyond what's typical in a CRUD system.
 
-Most of the time, application code deals with boring, discrete things. Queries look like:
+Most of the time, application code deals with simple, discrete things. Queries generally look like:
 
 ```
 id = ?
@@ -79,18 +77,17 @@ created_at > ?
 status = 'active'
 ```
 
-Spatial data behaves differently.
-
-An area of interest behaves differently from most application data. It’s a shape in a coordinate system, so the useful operations aren’t equality checks but geometric ones, such as:
+When it comes to spatial data, the focus is not to select and retrieve a record.
+An area of interest data is a shape in a coordinate system, so the useful operations involve geometric checks, such as:
 
 - intersects
 - contains
 - overlaps
 - within
 
-Instead of checking whether a record exists, you’re testing whether a geometry intersects the satellite’s projected ground track within a given time window.
+Instead of checking whether a record exists, you’re testing and validating whether a geometry intersects the satellite’s projected ground track within a given time window.
 
-That shift affects how you model and reason about data. Low-level geometric details, like polygon winding order, suddenly become relevant.
+This changes how you model and reason about data. Low-level geometric details, like polygon winding order become relevant.
 
 Note: Winding order is whether a polygon's vertices run clockwise or counterclockwise. RFC 7946 requires counterclockwise for exterior rings. If you get it wrong, your polygon over Tokyo gets interpreted as everywhere on Earth except Tokyo, which can result in a very expensive satellite capture.
 
@@ -121,11 +118,11 @@ After working with geographic data in production systems, I built a small demo p
 
 https://japan-geo-graph.vercel.app ([github](https://github.com/asawo/japan-geo-graph))
 
-It’s a lightweight exploration of geographic data and graph structures. Mostly a learning exercise (and certainly not something I’d trust with a satellite).
+It’s a lightweight exploration of geographic and demographic data. Mostly a learning exercise (which is another way of saying it doesn't do anything useful).
 
 Working in space tech made me curious about how spatial data can be modeled and visualised beyond traditional GIS tools.
 
-No satellites at risk if I get the geometry wrong. But the underlying idea is the same: geographic data is about more than a set of coordinates. It encodes relationships, adjacency, and structure.
+The good thing about this is, no satellites are at risk if I get the geometry wrong. But the core idea is the same: geographic data is about more than a set of coordinates. It encodes relationships, adjacency, and structure.
 
 ## Closing Thoughts
 
