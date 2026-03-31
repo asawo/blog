@@ -109,7 +109,7 @@ A Python service reads from the same RTSP stream as MediaMTX, using FFmpeg to de
 
 It slices the audio into ~1-second windows (15,600 samples at 16kHz) and feeds each one through the YAMNet TFLite model. If the confidence score for the cry class clears a configurable threshold, it fires a push notification.
 
-For push notifications I used [ntfy.sh](https://ntfy.sh/) — a dead-simple open-source notification service. You subscribe to a topic on your phone, and POSTing to that topic URL sends a push. Free, no subscription, no account required. Crying and wet farts (poop) trigger a phone notification; dry farts are flagged in the UI only.
+For push notifications I used [ntfy.sh](https://ntfy.sh/), which is an open-source notification service. You subscribe to a topic on your phone, and POSTing to that topic URL sends a push. Free, no subscription, no account required. Crying and wet farts (poop) trigger a phone notification; dry farts are flagged in the UI only.
 
 ## Fart & Poop detection
 
