@@ -1,5 +1,5 @@
 ---
-title: "Signal Processing the Stink: A DIY Baby Monitor"
+title: "Using ML to detect poo on a DIY baby monitor"
 date: 2026-03-10
 description: A post about my experience building a smart baby monitor that can detect crying, farting, and pooping.
 ---
