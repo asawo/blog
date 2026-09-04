@@ -25,13 +25,11 @@ I wanted somewhere I could see whether everything was alive, look at resource us
 
 Getting everything running was pretty straightforward.
 
-Getting everything to tell me the truth was slightly less straightforward.
+Within the first few days though, I had six alerts telling me perfectly healthy services were down, thousands of logs with an `unknown` log level, and a journald receiver repeatedly crashing.
 
-Within the first few days I had six alerts telling me perfectly healthy services were down, thousands of logs with an `unknown` log level, and a journald receiver repeatedly crashing.
+So I ended up spending considerably more time debugging the monitoring stack than actually monitoring anything.
 
-So I spent considerably more time debugging my monitoring than actually monitoring anything.
-
-Here are the three problems I found most interesting.
+Here are three of the more interesting problems I ran into.
 
 ## Docker didn't know about my DNS
 
@@ -42,7 +40,6 @@ Six `HttpCheckFailing` alerts were firing. Every `*.home` service appeared down,
 The services themselves were fine, so that narrowed things down quite a bit.
 
 My homelab uses AdGuard for DNS, including local rewrites like:
-
 ```text
 photos.home (Immich)
 monitoring.home (Grafana)
@@ -57,12 +54,11 @@ Tailscale's DNS address exists on the LXC host's `tailscale0` interface, but isn
 
 Unfortunately, it picked my LAN gateway.
 
-My LAN gateway had absolutely no idea what `photos.home` (Immich) was.
+My LAN gateway had absolutely no idea what `photos.home` was.
 
 I checked `/etc/resolv.conf` inside the affected containers and found the same incorrect resolver in all three. What initially looked like several unrelated monitoring problems was really just one DNS problem.
 
 The fix was not particularly exciting. For example, here's the Blackbox Exporter change:
-
 ```diff
 blackbox-exporter:
   image: prom/blackbox-exporter:v0.25.0
@@ -74,14 +70,11 @@ I explicitly pointed all three exporters at AdGuard.
 
 On the next scrape, the alerts disappeared.
 
-A useful reminder that when several unrelated things suddenly break in exactly the same way, they're probably not unrelated.
-
 ## Why are all my logs `unknown`?
 
 With uptime working, I moved on to logs.
 
 Immich is a NestJS application, and its logs conveniently contain the log level:
-
 ```text
 [Nest] LOG [InstanceLoader] Immich dependencies initialized
 ```
@@ -89,13 +82,11 @@ Immich is a NestJS application, and its logs conveniently contain the log level:
 So extracting `LOG`, `WARN`, `ERROR`, etc. should have been easy.
 
 Except Grafana showed most of my logs as:
-
 ```text
 level="unknown"
 ```
 
 Looking at what Loki had actually stored made the problem fairly obvious:
-
 ```text
 \x1b[36m[Nest]\x1b[39m \x1b[32mLOG\x1b[39m [InstanceLoader] ...
 ```
@@ -111,7 +102,6 @@ Apparently it wasn't.
 Rather than continue tweaking the regex, I tried something much simpler.
 
 I changed the stage to replace:
-
 ```text
 Nest → TESTMARKER
 ```
@@ -125,7 +115,6 @@ Meanwhile `Nest` continued happily arriving unchanged.
 That was useful because it ruled out my ANSI regex entirely. The replacement stage simply wasn't modifying the forwarded log line the way I expected it to.
 
 Fortunately Alloy has [`stage.decolorize`](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.process/#stagedecolorize) specifically for this:
-
 ```diff
 - stage.replace {
 -   expression = "\\x1b\\[[0-9;]*m"
@@ -135,16 +124,15 @@ Fortunately Alloy has [`stage.decolorize`](https://grafana.com/docs/alloy/latest
 ```
 
 After switching to `stage.decolorize`, the stored line became:
-
 ```text
 [Nest] LOG [InstanceLoader] Immich dependencies initialized
 ```
 
 and the level extraction started working.
 
-This was probably my favourite bug of the three because the useful debugging technique was incredibly unsophisticated.
+This was probably my favourite bug of the three because the debugging technique was incredibly unsophisticated.
 
-When you're not sure whether a transformation is happening, replace something obvious with something stupid and see if it appears.
+If you're not sure whether a transformation is happening, replace something obvious with something stupid and see if it appears.
 
 `TESTMARKER` has never let me down.
 
@@ -161,7 +149,6 @@ Perfect.
 One central receiver, tiny footprint, nothing else to maintain.
 
 Then I turned it on.
-
 ```text
 systemd-journal-remote: Stream declares field with
 size [large value omitted] > DATA_SIZE_MAX
@@ -172,7 +159,6 @@ The receiver immediately started crash-looping.
 After digging through the package versions and upstream issues, I eventually traced it to how `systemd-journal-remote` handled chunked request bodies delivered by `libmicrohttpd`. The receiver treated each fragment as a complete compressed blob, rather than processing the request body incrementally ([systemd issue #43614](https://github.com/systemd/systemd/issues/43614)).
 
 More importantly, it affected the package combination Debian trixie currently ships:
-
 ```text
 systemd 257.13
 libmicrohttpd12t64 1.0.1-4
@@ -186,8 +172,9 @@ Or I could downgrade to the bookworm version, override the declared dependencies
 
 This was quickly becoming a lot of effort to preserve an architecture I'd chosen because it was supposed to be simple.
 
-So I gave up. Each LXC now runs Grafana Alloy directly as a small standalone binary and systemd service. Alloy reads the local journal and ships it straight to Loki.
+So I gave up.
 
+Each LXC now runs Grafana Alloy directly as a small standalone binary and systemd service. Alloy reads the local journal and ships it straight to Loki.
 ```text
 LXC
 ├── application
@@ -210,7 +197,6 @@ Very observability.
 ## What I ended up with
 
 After about six days of messing around, everything now looks roughly like this:
-
 ```text
 HTTP targets ──► Blackbox Exporter ─┐
 PVE metrics ────────────────────────┼──► Prometheus ─┐
@@ -229,14 +215,6 @@ But that's also what I've been enjoying about running a homelab.
 
 At work, these layers might belong to several different teams. At home, if DNS is broken, congratulations: you're the DNS team.
 
-The most useful habit throughout all of this was just checking one layer lower than wherever the problem appeared.
+Six days after deciding it would be nice to have some graphs, I now have considerably more software, a better understanding of `systemd-journal-remote` than I ever wanted, and a monitoring system that has finally stopped generating incidents for itself.
 
-Grafana says the service is down? Check whether the exporter can actually resolve it.
-
-The regex doesn't match? Look at the bytes Loki actually stored.
-
-The systemd service keeps crashing? Check the packages underneath it.
-
-None of that is particularly clever, but it saved me from spending a lot of time fixing the wrong thing.
-
-And, more importantly, my monitoring system has finally stopped generating incidents for itself.
+For now.
