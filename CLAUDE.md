@@ -1,6 +1,6 @@
 # Blog
 
-Minimal Astro static blog hosted on GitHub Pages at `asawo.github.io/blog`.
+Minimal Astro static blog hosted on GitHub Pages at `arthur.lechte.dev/blog` (custom domain; repo is `asawo/blog`).
 
 ## Commands
 
@@ -17,7 +17,7 @@ Minimal Astro static blog hosted on GitHub Pages at `asawo.github.io/blog`.
 - **`src/pages/index.astro`** — Home page listing all posts sorted by date
 - **`src/pages/posts/[...slug].astro`** — Dynamic route rendering individual posts
 - **`src/styles/global.css`** — Vanilla CSS, system fonts, 65ch max-width
-- **`astro.config.mjs`** — site: `https://asawo.github.io`, base: `/blog`
+- **`astro.config.mjs`** — site: `https://arthur.lechte.dev`, base: `/blog`
 
 ## Adding a post
 
